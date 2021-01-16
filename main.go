@@ -7,5 +7,8 @@ import (
 
 func main() {
 	fmt.Println("Hello, there!!")
-	graph.Show_graph()
+	var nodes []string = []string{"1","2","3"}
+	var edges [][]string = [][]string{{"1","2"},{"1","3"}}
+	g := graph.New(nodes, edges)
+	g.Show_graph()
 }
