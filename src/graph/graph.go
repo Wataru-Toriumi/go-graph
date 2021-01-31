@@ -14,6 +14,14 @@ func (G Graph) Show_graph() {
 	fmt.Printf("edges: %v\n", G.edges)
 }
 
+func (G Graph) Get_nodes() []string {
+	return G.nodes
+}
+
+func (G Graph) Get_edges() [][]string {
+	return G.edges
+}
+
 func New (nodes []string, edges [][]string) *Graph {
 	return &Graph{nodes, edges}
 }
