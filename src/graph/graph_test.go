@@ -1,8 +1,9 @@
-package graph
+package graph_test
 
 import (
 	"testing"
 	"reflect"
+	"github.com/Wataru-Toriumi/go-graph/src/graph"
 )
 
 func TestGraphNew(t *testing.T) {
@@ -11,7 +12,7 @@ func TestGraphNew(t *testing.T) {
 
 	var nodes []string = []string{"1","2","3"}
 	var edges [][]string = [][]string{{"1","2"},{"1","3"}}
-	g := New(nodes, edges)
+	g := graph.New(nodes, edges)
 
 	t.Run("get nodes", func(t *testing.T) {
 		if (reflect.DeepEqual(g.Get_nodes, nodes)) {
