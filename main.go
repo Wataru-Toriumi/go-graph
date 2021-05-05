@@ -10,5 +10,5 @@ func main() {
 	var nodes []string = []string{"1","2","3"}
 	var edges [][]string = [][]string{{"1","2"},{"1","3"}}
 	g := graph.New(nodes, edges)
-	g.Show()
+	graph.Show(g)
 }
