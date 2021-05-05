@@ -12,21 +12,21 @@ func TestGraphNew(t *testing.T) {
 
 	var nodes []string = []string{"1","2","3"}
 	var edges [][]string = [][]string{{"1","2"},{"1","3"}}
-	g := graph.New(nodes, edges)
+	var g = graph.New(nodes, edges)
 
 	t.Run("get nodes", func(t *testing.T) {
-		if (reflect.DeepEqual(g.Get_nodes, nodes)) {
-			t.Errorf("Not adequate nodes.")
-		} else {
+		if (reflect.DeepEqual(graph.Get_nodes(g), nodes)) {
 			t.Logf("get nodes test succeeded.")
+		} else {
+			t.Errorf("Not adequate nodes.")
 		}
 	})
 
 	t.Run("get edges", func(t *testing.T) {
-		if (reflect.DeepEqual(g.Get_edges, edges)) {
-			t.Errorf("Not adequate edges.")
-		} else {
+		if (reflect.DeepEqual(graph.Get_edges(g), edges)) {
 			t.Logf("get edges test succeeded.")
+		} else {
+			t.Errorf("Not adequate edges.")
 		}
 	})
 }
