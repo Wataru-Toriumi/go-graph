@@ -2,18 +2,8 @@ package graph
 
 import (
 	"fmt"
+	"strconv"
 )
-
-type Node struct {
-	Id string
-	Weight map[string] int
-}
-
-type Edge struct {
-	From string
-	To string
-	Weight map[string] int
-}
 
 type Graph struct {
 	nodes []Node
@@ -21,26 +11,26 @@ type Graph struct {
 }
 
 type GraphInterface interface {
-	get_nodes() []Node
-	get_edges() []Edge
-	add_nodes([]Node)
-	add_edges([]Edge)
+	getNodes() []Node
+	getEdges() []Edge
+	addNodes([]Node)
+	addEdges([]Edge)
 	show()
 }
 
-func (G Graph) get_nodes() []Node {
+func (G Graph) getNodes() []Node {
 	return G.nodes
 }
 
-func (G Graph) get_edges() []Edge {
+func (G Graph) getEdges() []Edge {
 	return G.edges
 }
 
-func (G *Graph) add_nodes(nodes []Node) {
+func (G *Graph) addNodes(nodes []Node) {
 	G.nodes = append(G.nodes, nodes...)
 }
 
-func (G *Graph) add_edges(edges []Edge) {
+func (G *Graph) addEdges(edges []Edge) {
 	G.edges = append(G.edges, edges...)
 }
 
@@ -49,25 +39,39 @@ func (G Graph) show() {
 	fmt.Printf("edges: %v\n", G.edges)
 }
 
-func New (nodes []Node, edges []Edge) *Graph {
-	return &Graph{nodes, edges}
+func New (nodes [][2]string, edges [][3]string) *Graph {
+	var ns []Node = []Node{}
+	var es []Edge = []Edge{}
+
+	for _, node := range nodes {
+		weight, _ := strconv.Atoi(node[1])
+		n := NewNode(node[0], map[string]int{"weight": weight})
+		ns = append(ns, *n)
+	}
+
+	for _, edge := range edges {
+		weight, _ := strconv.Atoi(edge[2])
+		e := NewEdges(edge[0], edge[1], map[string]int{"weight": weight})
+		es = append(es, *e)
+	}
+	return &Graph{ns, es}
 }
 
 
 func Get_nodes(g GraphInterface) []Node {
-	return g.get_nodes()
+	return g.getNodes()
 }
 
 func Get_edges(g GraphInterface) []Edge {
-	return g.get_edges()
+	return g.getEdges()
 }
 
 func Add_nodes(g GraphInterface, nodes []Node) {
-	g.add_nodes(nodes)
+	g.addNodes(nodes)
 }
 
 func Add_edges(g GraphInterface, edges []Edge) {
-	g.add_edges(edges)
+	g.addEdges(edges)
 }
 
 func Show(g GraphInterface) {

@@ -28,5 +28,5 @@ func main(){
 ## Test
 
 ```bash
-go test -v src/graph/graph.go src/graph/graph_test.go
+go test -v src/graph/graph_test.go
 ```

@@ -11,15 +11,25 @@ func TestGraphNew(t *testing.T) {
 	t.Logf("Set up")
 
 	var nodes []graph.Node = []graph.Node{
-		{Id: "1", Weight: map[string]int{"item": 1}},
-		{Id: "2", Weight: map[string]int{"item": 1}},
-		{Id: "3", Weight: map[string]int{"item": 1}},
+		{Id: "1", Weight: map[string]int{"weight": 1}},
+		{Id: "2", Weight: map[string]int{"weight": 1}},
+		{Id: "3", Weight: map[string]int{"weight": 1}},
+	}
+	var ns [][2]string = [][2]string{
+		{"1", "1"},
+		{"2", "1"},
+		{"3", "1"},
 	}
 	var edges []graph.Edge = []graph.Edge{
-		{From: "1", To: "2", Weight: map[string]int{"item": 1}},
-		{From: "1", To: "3", Weight: map[string]int{"item": 1}},
+		{From: "1", To: "2", Weight: map[string]int{"weight": 1}},
+		{From: "1", To: "3", Weight: map[string]int{"weight": 1}},
 	}
-	var g = graph.New(nodes, edges)
+
+	var es [][3]string = [][3]string{
+		{"1", "2", "1"},
+		{"1", "3", "1"},
+	}
+	var g = graph.New(ns, es)
 
 	t.Run("get nodes", func(t *testing.T) {
 		gotten_nodes := reflect.DeepEqual(graph.Get_nodes(g), nodes)
@@ -41,19 +51,19 @@ func TestGraphNew(t *testing.T) {
 	})
 
 	var new_nodes []graph.Node = []graph.Node{
-		{Id: "4", Weight: map[string]int{"item": 1}},
+		{Id: "4", Weight: map[string]int{"weight": 1}},
 	}
 	var new_edges []graph.Edge = []graph.Edge{
-		{From: "1", To: "4", Weight: map[string]int{"item": 1}},
-		{From: "2", To: "4", Weight: map[string]int{"item": 1}},
+		{From: "1", To: "4", Weight: map[string]int{"weight": 1}},
+		{From: "2", To: "4", Weight: map[string]int{"weight": 1}},
 	}
 
 	t.Run("add nodes", func(t *testing.T) {
 		expected_nodes := []graph.Node{
-			{Id: "1", Weight: map[string]int{"item": 1}},
-			{Id: "2", Weight: map[string]int{"item": 1}},
-			{Id: "3", Weight: map[string]int{"item": 1}},
-			{Id: "4", Weight: map[string]int{"item": 1}},
+			{Id: "1", Weight: map[string]int{"weight": 1}},
+			{Id: "2", Weight: map[string]int{"weight": 1}},
+			{Id: "3", Weight: map[string]int{"weight": 1}},
+			{Id: "4", Weight: map[string]int{"weight": 1}},
 		}
 		graph.Add_nodes(g, new_nodes)
 		added_nodes := reflect.DeepEqual(graph.Get_nodes(g), expected_nodes)
@@ -67,10 +77,10 @@ func TestGraphNew(t *testing.T) {
 
 	t.Run("add edges", func(t *testing.T) {
 		expected_edges := []graph.Edge{
-			{From: "1", To: "2", Weight: map[string]int{"item": 1}},
-			{From: "1", To: "3", Weight: map[string]int{"item": 1}},
-			{From: "1", To: "4", Weight: map[string]int{"item": 1}},
-			{From: "2", To: "4", Weight: map[string]int{"item": 1}},
+			{From: "1", To: "2", Weight: map[string]int{"weight": 1}},
+			{From: "1", To: "3", Weight: map[string]int{"weight": 1}},
+			{From: "1", To: "4", Weight: map[string]int{"weight": 1}},
+			{From: "2", To: "4", Weight: map[string]int{"weight": 1}},
 		}
 		graph.Add_edges(g, new_edges)
 		added_nodes := reflect.DeepEqual(graph.Get_edges(g), expected_edges)
