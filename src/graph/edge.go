@@ -1,11 +1,11 @@
 package graph
 
 type Edge struct {
-	From string
-	To string
-	Weight map[string] int
+	From interface{}
+	To interface{}
+	Weight map[string] interface{}
 }
 
-func NewEdges(from string, to string, weight map[string] int) *Edge {
+func NewEdges(from interface{}, to interface{}, weight map[string] interface{}) *Edge {
 	return &Edge{From: from, To: to, Weight: weight}
 }

@@ -2,7 +2,6 @@ package graph
 
 import (
 	"fmt"
-	"strconv"
 )
 
 type Graph struct {
@@ -39,19 +38,17 @@ func (G Graph) show() {
 	fmt.Printf("edges: %v\n", G.edges)
 }
 
-func New (nodes [][2]string, edges [][3]string) *Graph {
+func New (nodes [][2]interface{}, edges [][3]interface{}) *Graph {
 	var ns []Node = []Node{}
 	var es []Edge = []Edge{}
 
 	for _, node := range nodes {
-		weight, _ := strconv.Atoi(node[1])
-		n := NewNode(node[0], map[string]int{"weight": weight})
+		n := NewNode(node[0], map[string]interface{}{"weight": node[1]})
 		ns = append(ns, *n)
 	}
 
 	for _, edge := range edges {
-		weight, _ := strconv.Atoi(edge[2])
-		e := NewEdges(edge[0], edge[1], map[string]int{"weight": weight})
+		e := NewEdges(edge[0], edge[1], map[string]interface{}{"weight": edge[2]})
 		es = append(es, *e)
 	}
 	return &Graph{ns, es}

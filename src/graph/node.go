@@ -1,10 +1,10 @@
 package graph
 
 type Node struct {
-	Id string
-	Weight map[string] int
+	Id interface{}
+	Weight map[string] interface{}
 }
 
-func NewNode(id string, weight map[string] int) *Node{
+func NewNode(id interface{}, weight map[string] interface{}) *Node{
 	return &Node{Id: id, Weight: weight}
 }
